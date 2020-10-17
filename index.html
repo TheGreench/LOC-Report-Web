@@ -3,6 +3,7 @@
   Library of Code sp-us | Department of Engineering
   Originally written by: Matthew, AD, FSEN <matthew@staff.libraryofcode.org>
   Modified by: TheGreench, AS, ENG-I <greench@staff.libraryofcode.org>
+    Last Update: Saturday, October 17, 2020
     COPYRIGHT 2020
 -->
 
@@ -16,7 +17,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="This web is used to get information about the score of user in the LOC server.">
-    <meta name="keywords" content="LOC, Discord, Jira">
+    <meta name="keywords" content="LOC, Discord, Jira, Library of Code">
     <meta name="author" content="Library of Code sp-us | Department of Engineering">
     <meta name="url" content="//report.libraryofcode.org/">
     <meta name="image" content="//static.libraryofcode.org/library_of_code_comm_red.png">
@@ -94,56 +95,66 @@
     </script>
     <!-- Style -->
     <style>
-        body {
-          padding: 25px;
-          background-color: white;
-          color: #000000;
-          --scoreColorP: #2800db;
-        }
-        .dark-mode {
-          background-color: #3f3e3e;
-          color: white;
-          --enterB-bg: #232429;
-          --enterBBorder-bg: white;
-          --enterB-color: white;
-          --scoreColorP: #dbcc00;
-          --color-tl: black !important;
-        }
-        #pre, #post {
-            margin: 35px;
-        }
-        #pre .headerH1 {
-            text-decoration: underline;
-        }
-        #HASH {
-            display: flex;
-            justify-content: space-between;
-        }
-        .ScoreColorP {
-            color: var(--scoreColorP);
-        }
-        #enterB {
-          background-color: var(--enterB-bg);
-          border-color: var(--enterBBorder-bg);
-          color: var(--enterB-color);
-        }
-        #enterB:hover {
-            background-color: green;
-        }
-        .modal-content {
-          border: 1px solid rgb(223, 0, 0);
-        }
-        #closeBtn {
-          background-color: red;
-          border-color: none !important;
-        }
-        #closeBtn:hover {
-          background-color: green;
-          border-color: none !important;
-        }
-        .thead-light {
-          color: var(--color-tl);
-        }
+      body {
+        padding: 25px;
+        background-color: #ffffff;
+        color: #000000;
+        --scoreColorP: #2800db;
+        --pt2b-color: #1baafd;
+        --footer-bg: #1f1f1f;
+        --footer-color: #ffffff;
+      }
+      .dark-mode {
+        background-color: #3f3e3e;
+        color: white;
+        --enterB-bg: #232429;
+        --enterBBorder-bg: white;
+        --enterB-color: white;
+        --scoreColorP: #dbcc00;
+        --color-tl: black !important;
+        --pt2b-color: #dbcc00;
+        --footer-bg: #1f1f1f;
+        --footer-color: #fff6f6;
+      }
+      #pre, #post {
+        margin: 35px;
+      }
+      #pre .headerH1 {
+        text-decoration: underline;
+      }
+      #HASH {
+        display: flex;
+        justify-content: space-between;
+      }
+      .ScoreColorP {
+        color: var(--scoreColorP);
+      }
+      #enterB {
+        background-color: var(--enterB-bg);
+        border-color: var(--enterBBorder-bg);
+        color: var(--enterB-color);
+      }
+      #enterB:hover {
+        background-color: green;
+      }
+      .modal-content {
+        border: 1px solid rgb(223, 0, 0);
+      }
+      #closeBtn {
+        background-color: red;
+        border-color: none !important;
+      }
+      #closeBtn:hover {
+        background-color: green;
+        border-color: none !important;
+      }
+      .thead-light {
+        color: var(--color-tl);
+      }
+      #pre-two {
+        border-left: 6px solid var(--pt2b-color);
+        border-radius: 5px;
+      }
     </style>
 </head>
 <body>
@@ -151,8 +162,8 @@
     <div class="container-fluid" id="page-container">
         <!-- Body Div -->
         <div id="content-wrap">
-            <!-- Verification Page Div -->
-            <div id="pre">
+          <!-- Verification Page Div -->
+          <div id="pre">
                 <div class="header" id="HASH">
                     <div>
                         <h2 class="headerH1">Library of Code sp-us</h2>
@@ -184,9 +195,9 @@
                         </div>
                     </div>
                 </div>
+                <br><br>
                 <!-- Staff PIN -->
                 <div class="container-fluid" id="pre-two">
-                    <br><br>
                     <h4>Staff PIN</h4>
                     <p>If you're a Staff member and you are pulling a report for another user, please enter your PIN here.</p>
                     <div class="input-group mb-3">
@@ -209,9 +220,9 @@
                         </fieldset>
                     </div>
                 </div>
+                <br><br>
                 <!-- Pre Approval Key -->
                 <div class="container-fluid" id="pre-two">
-                    <br><br>
                     <h4>Pre-Approval Offer Accept <span class="badge badge-secondary" style="background-color: blueviolet;">New</span></h4>
                     <p>If you've received a pre-approved offer in your DMs and you wish to accept, please enter it here and hit enter. By entering your offer ID, you understand a hard pull will be performed on your Community Report. While your chances of being approved for a pre-approved offer are higher, it's not 100%.</p>
                     <div class="input-group mb-3">
@@ -222,16 +233,16 @@
                         </div>
                     </div>
                 </div>
-            </div>
+          </div>
 
-            <!-- Pre Approval Message -->
-            <div id="offer-accepted" style="display: none">
+          <!-- Pre Approval Message -->
+          <div id="offer-accepted" style="display: none">
                 <h3 id="offer-accepted" style="display: none">Offer Accepted</h3>
                 <p id="offer-accepted" style="display: none">This offer has been accepted, you may now close this tab.</p>
-            </div>
+          </div>
 
-            <!-- Modal Denied -->
-            <div class="modal" tabindex="-1" role="dialog" style="display: none" id="denied">
+          <!-- Modal Denied -->
+          <div class="modal" tabindex="-1" role="dialog" style="display: none" id="denied">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -248,10 +259,10 @@
                     </div>
                   </div>
                 </div>
-            </div>
+          </div>
 
-            <!-- PA Key Denied -->
-            <div class="modal" tabindex="-1" role="dialog" style="display: none" id="paKDenied">
+          <!-- PA Key Denied -->
+          <div class="modal" tabindex="-1" role="dialog" style="display: none" id="paKDenied">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -268,10 +279,10 @@
                     </div>
                   </div>
                 </div>
-            </div>
+          </div>
 
-            <!-- Invalid PIN -->
-            <div class="modal" tabindex="-1" role="dialog" style="display: none" id="invalidPIN">
+          <!-- Invalid PIN -->
+          <div class="modal" tabindex="-1" role="dialog" style="display: none" id="invalidPIN">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -288,10 +299,10 @@
                   </div>
                 </div>
               </div>
-            </div>
+          </div>
 
-            <!-- Invalid Key -->
-            <div class="modal" tabindex="-1" role="dialog" style="display: none" id="invalidKey">
+          <!-- Invalid Key -->
+          <div class="modal" tabindex="-1" role="dialog" style="display: none" id="invalidKey">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -308,10 +319,10 @@
                   </div>
                 </div>
               </div>
-            </div>
+          </div>
 
-            <!-- 500 Service Modal -->
-            <div class="modal" tabindex="-1" role="dialog" style="display: none" id="serviceE">
+          <!-- 500 Service Modal -->
+          <div class="modal" tabindex="-1" role="dialog" style="display: none" id="serviceE">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -328,10 +339,10 @@
                   </div>
                 </div>
               </div>
-            </div>
+          </div>
 
-            <!-- User Page Div-->
-            <div id="post" style="display: none">
+          <!-- User Page Div-->
+          <div id="post" style="display: none">
                     <!-- Head -->
                     <div class="header" id="HASH">
                         <div>
@@ -403,22 +414,21 @@
                         </div>
                       </div>
                     </div>
-            </div>
+          </div>
         </div>
 
-          <!-- Footer -->
+        <!-- Footer -->
         <br><br>
         <footer class="text-center font-weight-light text-monospace" id="footer">
-              LIBRARY OF CODE SP-US | DEPT. OF COMMUNITY ENGAGEMENT & ENGINEERING
-              <br>
-              <a href="https://loc.sh/discord">Discord Server</a> | <a href="//libraryofcode.org">Main Web</a> | <a href="https://loc.sh/support">Support</a> | <a href="///directory.libraryofcode.org">Staff Directory</a> 
-              <br>
-              FOR AUTHORIZED USE ONLY
-              <br>
-              <br>
-              <button onclick="myFunction()" class="btn btn-secondary btn-sm">Toggle dark mode</button>
+          <button onclick="myFunction()" class="btn btn-secondary btn-sm">Toggle dark mode</button>
+          <br><br>
+          LIBRARY OF CODE SP-US | DEPT. OF COMMUNITY ENGAGEMENT & ENGINEERING
+          <br>
+          <a href="https://loc.sh/discord">Discord Server</a> | <a href="//libraryofcode.org">Main Web</a> | <a href="https://loc.sh/support">Support</a> | <a href="///directory.libraryofcode.org">Staff Directory</a> 
+          <br>
+          FOR AUTHORIZED USE ONLY
+          <br>
         </footer>
-        <br><br>
     </div>
 
     <!-- Scripts -->
