@@ -76,12 +76,14 @@
           row.insertCell().innerHTML = pull.name.toUpperCase();
           row.insertCell().innerHTML = pull.reason;
           row.insertCell().innerHTML = new Date(pull.date).toLocaleString('en-us');
+          document.getElementById('hardCount').innerHTML = `<span class="ScoreColorP">${data.inquiries.length}</span>`;
         }
         const soft = document.getElementById('soft');
         for (const pull of data.softInquiries.sort((a, b) => b.date > a.date)) {
           const row = soft.insertRow();
           row.insertCell().innerHTML = pull.name.toUpperCase();
           row.insertCell().innerHTML = new Date(pull.date).toLocaleString('en-us');
+          document.getElementById('softCount').innerHTML = `<span class="ScoreColorP">${data.softInquiries.length}</span>`;
         }
         visible('post');
       }
@@ -333,7 +335,7 @@
                   </div>
                   <br>
                   <!-- Hard Pulls Table -->
-                  <h4>Hard Inquiries | <span><a class="btn btn-secondary btn-sm" data-toggle="collapse" href="#Collapse1" role="button" aria-expanded="false" aria-controls="Collapse1">Toggle Hard Inquiries</a></span></h4>
+                  <h4>Hard Inquiries | <span id="hardCount"></span> | <span><a class="btn btn-secondary btn-sm" data-toggle="collapse" href="#Collapse1" role="button" aria-expanded="false" aria-controls="Collapse1">Toggle Hard Inquiries</a></span></h4>
                   <p>All your inquiries will be labeled here, regardless of their age. They will stop impacting your score after 3 months.</p>
                   <div class="row">
                     <div class="col">
@@ -354,7 +356,7 @@
                   </div>
                   <br>
                   <!-- Soft Pulls Table -->
-                  <h4>Soft Inquiries | <span><a class="btn btn-secondary btn-sm" data-toggle="collapse" href="#Collapse2" role="button" aria-expanded="false" aria-controls="Collapse2">Toggle Soft Inquiries</a></span></h4>
+                  <h4>Soft Inquiries | <span id="softCount"></span> | <span><a class="btn btn-secondary btn-sm" data-toggle="collapse" href="#Collapse2" role="button" aria-expanded="false" aria-controls="Collapse2">Toggle Soft Inquiries</a></span></h4>
                   <p>Soft Inquiries are pulls initiated by Staff members or even yourself to re-evaluate existing eligibility or just to check the report for informational purposes. Soft Inquiries will not count in your Community Score.</p>
                   <div class="row">
                     <div class="col">
