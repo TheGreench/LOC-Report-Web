@@ -107,6 +107,7 @@
           --enterBBorder-bg: white;
           --enterB-color: white;
           --scoreColorP: #dbcc00;
+          --color-tl: black !important;
         }
         #pre, #post {
             margin: 35px;
@@ -139,6 +140,9 @@
         #closeBtn:hover {
           background-color: green;
           border-color: none !important;
+        }
+        .thead-light {
+          color: var(--color-tl);
         }
     </style>
 </head>
@@ -197,6 +201,7 @@
                             <span class="input-group-text" id="basic-addon2">-</span>
                         </div>
                         <input id="staff-pin3" type="text" class="form-control col-md-3" placeholder="XXXX" aria-label="pin" aria-describedby="basic-addon3" maxlength="4">
+                        <!-- <button  class="btn btn-outline-secondary" type="submit" onclick="js:submit()" id="enterB">Enter</button> -->
                         <fieldset disabled>
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="submit" id="disabledTextInput" id="enterB" data-toggle="tooltip" data-placement="right" title="Disabled">Enter</button>
