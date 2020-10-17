@@ -9,10 +9,19 @@
 <!DOCTYPE html>
 <head lang="en">
     <title>Community Score Report</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="icon" type="image/png" href="https://static.libraryofcode.org/library_of_code_comm_red.png">
+    <!-- Links -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="//static.libraryofcode.org/library_of_code_comm_red.png">
+    <!-- Metas -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="This web is used to get information about the score of user in the LOC server.">
+    <meta name="keywords" content="LOC, Discord, Jira">
+    <meta name="author" content="Library of Code sp-us | Department of Engineering">
+    <meta name="url" content="//report.libraryofcode.org/">
+    <meta name="image" content="//static.libraryofcode.org/library_of_code_comm_red.png">
+    <meta name="theme-color" content="#ee831b">
+    <!-- Scripts -->
     <script>
       function visible(id) {
         document.getElementById(id).style.display = "block";
@@ -83,6 +92,7 @@
         visible('post');
       }
     </script>
+    <!-- Style -->
     <style>
         body {
           padding: 25px;
@@ -363,7 +373,7 @@
                                       <th scope="col"><strong>Date</strong></th>
                                   </tr>
                               </thead>
-                          </table>
+                            </table>
                           </div>
                         </div>
                       </div>
@@ -403,6 +413,7 @@
               <br>
               <button onclick="myFunction()" class="btn btn-secondary btn-sm">Toggle dark mode</button>
         </footer>
+        <br><br>
     </div>
 
     <!-- Scripts -->
