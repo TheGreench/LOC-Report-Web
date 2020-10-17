@@ -6,6 +6,11 @@
     COPYRIGHT 2020
 -->
 
+<!--
+  Modified by TheGreench
+  Discord: TheGreench#5074
+-->
+
 <!DOCTYPE html>
 <head lang="en">
     <title>Community Score Report</title>
@@ -328,29 +333,45 @@
                   </div>
                   <br>
                   <!-- Hard Pulls Table -->
-                  <h4>Hard Inquiries</h4>
+                  <h4>Hard Inquiries | <span><a class="btn btn-secondary btn-sm" data-toggle="collapse" href="#Collapse1" role="button" aria-expanded="false" aria-controls="Collapse1">Toggle Hard Inquiries</a></span></h4>
                   <p>All your inquiries will be labeled here, regardless of their age. They will stop impacting your score after 3 months.</p>
-                  <table class="table table-bordered table-striped" id="hard">
-                      <thead class="thead-light">
-                          <tr>
-                              <th scope="col"><strong>Department/Service</strong></th>
-                              <th scope="col"><strong>Reason</strong></th>
-                              <th scope="col"><strong>Date</strong></th>
-                          </tr>
-                      </thead>
-                  </table>
+                  <div class="row">
+                    <div class="col">
+                      <div class="collapse multi-collapse" id="Collapse1">
+                        <div class="card card-body">
+                          <table class="table table-bordered table-striped" id="hard">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col"><strong>Department/Service</strong></th>
+                                    <th scope="col"><strong>Reason</strong></th>
+                                    <th scope="col"><strong>Date</strong></th>
+                                </tr>
+                            </thead>
+                        </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <br>
                   <!-- Soft Pulls Table -->
-                  <h4>Soft Inquiries</h4>
+                  <h4>Soft Inquiries | <span><a class="btn btn-secondary btn-sm" data-toggle="collapse" href="#Collapse2" role="button" aria-expanded="false" aria-controls="Collapse2">Toggle Soft Inquiries</a></span></h4>
                   <p>Soft Inquiries are pulls initiated by Staff members or even yourself to re-evaluate existing eligibility or just to check the report for informational purposes. Soft Inquiries will not count in your Community Score.</p>
-                  <table class="table table-bordered table-striped" id="soft">
-                      <thead class="thead-light">
-                          <tr>
-                              <th scope="col"><strong>Department/Service or Name</strong></th>
-                              <th scope="col"><strong>Date</strong></th>
-                          </tr>
-                      </thead>
-                  </table>
+                  <div class="row">
+                    <div class="col">
+                      <div class="collapse multi-collapse" id="Collapse2">
+                        <div class="card card-body">
+                          <table class="table table-bordered table-striped" id="soft">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col"><strong>Department/Service or Name</strong></th>
+                                    <th scope="col"><strong>Date</strong></th>
+                                </tr>
+                            </thead>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
           </div>
         </div>
 
