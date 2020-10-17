@@ -6,11 +6,6 @@
     COPYRIGHT 2020
 -->
 
-<!--
-  Modified by TheGreench
-  Discord: TheGreench#5074
--->
-
 <!DOCTYPE html>
 <head lang="en">
     <title>Community Score Report</title>
@@ -89,6 +84,20 @@
       }
     </script>
     <style>
+        body {
+          padding: 25px;
+          background-color: white;
+          color: #000000;
+          --scoreColorP: #2800db;
+        }
+        .dark-mode {
+          background-color: #3f3e3e;
+          color: white;
+          --enterB-bg: #232429;
+          --enterBBorder-bg: white;
+          --enterB-color: white;
+          --scoreColorP: #dbcc00;
+        }
         #pre, #post {
             margin: 35px;
         }
@@ -100,7 +109,12 @@
             justify-content: space-between;
         }
         .ScoreColorP {
-            color: rgb(0, 37, 250);
+            color: var(--scoreColorP);
+        }
+        #enterB {
+          background-color: var(--enterB-bg);
+          border-color: var(--enterBBorder-bg);
+          color: var(--enterB-color);
         }
         #enterB:hover {
             background-color: green;
@@ -259,122 +273,122 @@
                   </div>
                 </div>
               </div>
-          </div>
+            </div>
 
-          <!-- Invalid Key -->
-          <div class="modal" tabindex="-1" role="dialog" style="display: none" id="invalidKey">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">ERROR: Access Denied</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="js:invisible('invalidKey') && visible('pre')">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <p>You must supply an Offer Code to continue.</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="js:invisible('invalidKey') && visible('pre')" id="closeBtn">Close</button>
+            <!-- Invalid Key -->
+            <div class="modal" tabindex="-1" role="dialog" style="display: none" id="invalidKey">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">ERROR: Access Denied</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="js:invisible('invalidKey') && visible('pre')">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>You must supply an Offer Code to continue.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="js:invisible('invalidKey') && visible('pre')" id="closeBtn">Close</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- 500 Service Modal -->
-          <div class="modal" tabindex="-1" role="dialog" style="display: none" id="serviceE">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">ERROR: Server Error</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="js:invisible('serviceE') && visible('pre')">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <p>The service is currently experiencing issues processing, please try again later.</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="js:invisible('serviceE') && visible('pre')" id="closeBtn">Close</button>
+            <!-- 500 Service Modal -->
+            <div class="modal" tabindex="-1" role="dialog" style="display: none" id="serviceE">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">ERROR: Server Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="js:invisible('serviceE') && visible('pre')">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>The service is currently experiencing issues processing, please try again later.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="js:invisible('serviceE') && visible('pre')" id="closeBtn">Close</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- User Page Div-->
-          <div id="post" style="display: none">
-                  <!-- Head -->
-                  <div class="header" id="HASH">
-                      <div>
-                          <h2 class="headerH1">Library of Code sp-us | Community Report</h2>
-                          <p>This information is confidential and only for authorized use.</p>
-                      </div>
-                      <img src="https://static.libraryofcode.org/library_of_code_comm_red.png" height="75px" width="75px">
-                  </div>
-                  <hr class="my-4">
-                  <br>
-                  <!-- Personal Info Box-->
-                  <h4>Personal Information</h4>
-                  <div style="padding: 8px; display: block; border: 1px solid black;">
-                      <p id="name"></p>
-                      <p id="id"></p>
-                      <p id="pin"></p>
-                  </div>
-                  <br>
-                  <!-- Score Box -->
-                  <h4>Score</h4>
-                  <p id="lastUpdated"></p>
-                  <div style="padding: 8px; display: block; border: 1px solid black;">
-                      <p id="total"></p>
-                      <p id="activity"></p>
-                      <p id="roles"></p>
-                      <p id="moderation"></p>
-                      <p id="cs"></p>
-                      <p id="other"></p>
-                      <p id="misc"></p>
-                  </div>
-                  <br>
-                  <!-- Hard Pulls Table -->
-                  <h4>Hard Inquiries | <span id="hardCount"></span> | <span><a class="btn btn-secondary btn-sm" data-toggle="collapse" href="#Collapse1" role="button" aria-expanded="false" aria-controls="Collapse1">Toggle Hard Inquiries</a></span></h4>
-                  <p>All your inquiries will be labeled here, regardless of their age. They will stop impacting your score after 3 months.</p>
-                  <div class="row">
-                    <div class="col">
-                      <div class="collapse multi-collapse" id="Collapse1">
-                        <div class="card card-body">
-                          <table class="table table-bordered table-striped" id="hard">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col"><strong>Department/Service</strong></th>
-                                    <th scope="col"><strong>Reason</strong></th>
-                                    <th scope="col"><strong>Date</strong></th>
-                                </tr>
-                            </thead>
-                        </table>
+            <!-- User Page Div-->
+            <div id="post" style="display: none">
+                    <!-- Head -->
+                    <div class="header" id="HASH">
+                        <div>
+                            <h2 class="headerH1">Library of Code sp-us | Community Report</h2>
+                            <p>This information is confidential and only for authorized use.</p>
                         </div>
-                      </div>
+                        <img src="https://static.libraryofcode.org/library_of_code_comm_red.png" height="75px" width="75px">
                     </div>
-                  </div>
-                  <br>
-                  <!-- Soft Pulls Table -->
-                  <h4>Soft Inquiries | <span id="softCount"></span> | <span><a class="btn btn-secondary btn-sm" data-toggle="collapse" href="#Collapse2" role="button" aria-expanded="false" aria-controls="Collapse2">Toggle Soft Inquiries</a></span></h4>
-                  <p>Soft Inquiries are pulls initiated by Staff members or even yourself to re-evaluate existing eligibility or just to check the report for informational purposes. Soft Inquiries will not count in your Community Score.</p>
-                  <div class="row">
-                    <div class="col">
-                      <div class="collapse multi-collapse" id="Collapse2">
-                        <div class="card card-body">
-                          <table class="table table-bordered table-striped" id="soft">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col"><strong>Department/Service or Name</strong></th>
-                                    <th scope="col"><strong>Date</strong></th>
-                                </tr>
-                            </thead>
+                    <hr class="my-4">
+                    <br>
+                    <!-- Personal Info Box-->
+                    <h4>Personal Information</h4>
+                    <div style="padding: 8px; display: block; border: 1px solid black;">
+                        <p id="name"></p>
+                        <p id="id"></p>
+                        <p id="pin"></p>
+                    </div>
+                    <br>
+                    <!-- Score Box -->
+                    <h4>Score</h4>
+                    <p id="lastUpdated"></p>
+                    <div style="padding: 8px; display: block; border: 1px solid black;">
+                        <p id="total"></p>
+                        <p id="activity"></p>
+                        <p id="roles"></p>
+                        <p id="moderation"></p>
+                        <p id="cs"></p>
+                        <p id="other"></p>
+                        <p id="misc"></p>
+                    </div>
+                    <br>
+                    <!-- Hard Pulls Table -->
+                    <h4>Hard Inquiries | <span id="hardCount"></span> | <span><a class="btn btn-secondary btn-sm" data-toggle="collapse" href="#Collapse1" role="button" aria-expanded="false" aria-controls="Collapse1">Toggle Hard Inquiries</a></span></h4>
+                    <p>All your inquiries will be labeled here, regardless of their age. They will stop impacting your score after 3 months.</p>
+                    <div class="row">
+                      <div class="col">
+                        <div class="collapse multi-collapse" id="Collapse1">
+                          <div class="card card-body">
+                            <table class="table table-bordered table-striped" id="hard">
+                              <thead class="thead-light">
+                                  <tr>
+                                      <th scope="col"><strong>Department/Service</strong></th>
+                                      <th scope="col"><strong>Reason</strong></th>
+                                      <th scope="col"><strong>Date</strong></th>
+                                  </tr>
+                              </thead>
                           </table>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-          </div>
+                    <br>
+                    <!-- Soft Pulls Table -->
+                    <h4>Soft Inquiries | <span id="softCount"></span> | <span><a class="btn btn-secondary btn-sm" data-toggle="collapse" href="#Collapse2" role="button" aria-expanded="false" aria-controls="Collapse2">Toggle Soft Inquiries</a></span></h4>
+                    <p>Soft Inquiries are pulls initiated by Staff members or even yourself to re-evaluate existing eligibility or just to check the report for informational purposes. Soft Inquiries will not count in your Community Score.</p>
+                    <div class="row">
+                      <div class="col">
+                        <div class="collapse multi-collapse" id="Collapse2">
+                          <div class="card card-body">
+                            <table class="table table-bordered table-striped" id="soft">
+                              <thead class="thead-light">
+                                  <tr>
+                                      <th scope="col"><strong>Department/Service or Name</strong></th>
+                                      <th scope="col"><strong>Date</strong></th>
+                                  </tr>
+                              </thead>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            </div>
         </div>
 
           <!-- Footer -->
@@ -385,6 +399,9 @@
               <a href="https://loc.sh/discord">Discord Server</a> | <a href="//libraryofcode.org">Main Web</a> | <a href="https://loc.sh/support">Support</a> | <a href="///directory.libraryofcode.org">Staff Directory</a> 
               <br>
               FOR AUTHORIZED USE ONLY
+              <br>
+              <br>
+              <button onclick="myFunction()" class="btn btn-secondary btn-sm">Toggle dark mode</button>
         </footer>
     </div>
 
@@ -398,5 +415,11 @@
           $(this).parents().next('.hide').toggle();
         });
       });
+    </script>
+    <script>
+      function myFunction() {
+         var element = document.body;
+         element.classList.toggle("dark-mode");
+      }
     </script>
   </body>
