@@ -2,8 +2,7 @@
 <!--
   Library of Code sp-us | Department of Engineering
   Originally written by: Matthew, AD, FSEN <matthew@staff.libraryofcode.org>
-  Modified by: TheGreench, AS, ENG-I <greench@staff.libraryofcode.org>
-    Last Update: Saturday, October 17, 2020
+  Modified by: TheGreench, ST <thegreench@staff.libraryofcode.org>
     COPYRIGHT 2020
 -->
 
@@ -23,6 +22,7 @@
     <meta name="image" content="//static.libraryofcode.org/library_of_code_comm_red.png">
     <meta name="theme-color" content="#ee831b">
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
     <script>
       function visible(id) {
         document.getElementById(id).style.display = "block";
@@ -33,7 +33,7 @@
       async function offer() {
         const code = document.getElementById('offer').value;
         if (!code) return visible('invalidKey');
-        const url = `https://loc.sh/int/offer/?code=${code}`;
+        const url = `https://comm.libraryofcode.org/report/offer/?code=${code}`;
 
         const fetched = await fetch(url);
         const accessDenied = 'Your access to this service has been denied.\nYou can access every 30 minutes.';
@@ -50,7 +50,7 @@
         if (!pin2 || pin2.length < 2 || pin2.length > 2) return visible('invalidPIN');
         const pin3 = document.getElementById('pin3').value;
         if (!pin3 || pin3.length < 4 || pin3.length > 4) return visible('invalidPIN');
-        let url = `https://loc.sh/int/score/?pin=${pin1}-${pin2}-${pin3}`;
+        let url = `https://comm.libraryofcode.org/report/web/?pin=${pin1}-${pin2}-${pin3}`;
         const staffPin1 = document.getElementById('staff-pin1').value;
         const staffPin2 = document.getElementById('staff-pin2').value;
         const staffPin3 = document.getElementById('staff-pin3').value;
@@ -78,9 +78,11 @@
         const hard = document.getElementById('hard');
         for (const pull of data.inquiries.sort((a, b) => b.date > a.date)) {
           const row = hard.insertRow();
+          row.insertCell().innerHTML = pull.id || 'N/A';
           row.insertCell().innerHTML = pull.name.toUpperCase();
           row.insertCell().innerHTML = pull.reason;
           row.insertCell().innerHTML = new Date(pull.date).toLocaleString('en-us');
+          row.insertCell().innerHTML = `${moment(pull.date).add(1460, 'hours').fromNow()} | ${moment(pull.date).add(1460, 'hours').calendar()}`;
           document.getElementById('hardCount').innerHTML = `<span class="ScoreColorP">${data.inquiries.length}</span>`;
         }
         const soft = document.getElementById('soft');
@@ -110,9 +112,9 @@
         --enterB-bg: #232429;
         --enterBBorder-bg: white;
         --enterB-color: white;
-        --scoreColorP: #dbcc00;
+        --scoreColorP: #0277bb;
         --color-tl: black !important;
-        --pt2b-color: #dbcc00;
+        --pt2b-color: #0277bb;
         --footer-bg: #1f1f1f;
         --footer-color: #fff6f6;
       }
@@ -216,11 +218,6 @@
                         </div>
                         <input id="staff-pin3" type="text" class="form-control col-md-3" placeholder="XXXX" aria-label="pin" aria-describedby="basic-addon3" maxlength="4">
                         <!-- <button  class="btn btn-outline-secondary" type="submit" onclick="js:submit()" id="enterB">Enter</button> -->
-                        <fieldset disabled>
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="submit" id="disabledTextInput" id="enterB" data-toggle="tooltip" data-placement="right" title="Disabled">Enter</button>
-                            </div>
-                        </fieldset>
                     </div>
                 </div>
                 <br><br>
@@ -379,7 +376,7 @@
                     <br>
                     <!-- Hard Pulls Table -->
                     <h4>Hard Inquiries | <span id="hardCount"></span> | <span><a class="btn btn-secondary btn-sm" data-toggle="collapse" href="#Collapse1" role="button" aria-expanded="false" aria-controls="Collapse1">Toggle Hard Inquiries</a></span></h4>
-                    <p>All your inquiries will be labeled here, regardless of their age. They will stop impacting your score after 3 months.</p>
+                    <p>All your inquiries will be labeled here, regardless of their age. They will stop impacting your score after 2 months.</p>
                     <div class="row">
                       <div class="col">
                         <div class="collapse multi-collapse" id="Collapse1">
@@ -387,9 +384,11 @@
                             <table class="table table-bordered table-striped" id="hard">
                               <thead class="thead-light">
                                   <tr>
+                                      <th scope="col"><strong>ID</strong></th>
                                       <th scope="col"><strong>Department/Service</strong></th>
                                       <th scope="col"><strong>Reason</strong></th>
                                       <th scope="col"><strong>Date</strong></th>
+                                      <th scope="col"><strong>Expiration</strong></th>
                                   </tr>
                               </thead>
                             </table>
@@ -425,9 +424,10 @@
         <footer class="text-center font-weight-light text-monospace" id="footer">
           <button onclick="myFunction()" class="btn btn-secondary btn-sm">Toggle dark mode</button>
           <br><br>
-          LIBRARY OF CODE SP-US | DEPT. OF COMMUNITY ENGAGEMENT & ENGINEERING
+          LIBRARY OF CODE SP-US | DEPT. OF COMMUNITY ENGAGEMENT & ENGINEERING | BUREAU OF COMMUNITY REPORTS
           <br>
-          <a href="https://loc.sh/discord">Discord Server</a> | <a href="//libraryofcode.org">Main Web</a> | <a href="https://loc.sh/support">Support</a> | <a href="///directory.libraryofcode.org">Staff Directory</a> 
+          <a href="https://loc.sh/discord">Discord Server</a> | <a href="//libraryofcode.org">Main Web</a> | <a href="https://loc.sh/support">Support</a> | <a href="///directory.libraryofcode.org">Staff Directory</a>
+
           <br>
           FOR AUTHORIZED USE ONLY
           <br>
@@ -444,6 +444,20 @@
           $(this).parents().next('.hide').toggle();
         });
       });
+      // Button change to Loading on click
+      $(document).ready(function() {
+        $('.btn').on('click', function() {
+          var $this = $(this);
+          var loadingText = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...';
+          if ($(this).html() !== loadingText) {
+            $this.data('original-text', $(this).html());
+            $this.html(loadingText);
+          }
+          setTimeout(function() {
+            $this.html($this.data('original-text'));
+          }, 1000);
+        });
+      })
     </script>
     <script>
       function myFunction() {
