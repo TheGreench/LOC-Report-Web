@@ -1,0 +1,438 @@
+<!--
+  Library of Code sp-us | Department of Engineering
+  Originally written by: Matthew, AD, FSEN <matthew@staff.libraryofcode.org>
+  Modified by: TheGreench, ST <thegreench@staff.libraryofcode.org>
+    Last Modified: 10/30/2020
+    COPYRIGHT 2020
+-->
+
+<!DOCTYPE html>
+
+<head lang="en">
+  <title>Community Score Report</title>
+  <!-- Links -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="icon" type="image/png" href="//static.libraryofcode.org/library_of_code_comm_red.png">
+  <link rel="stylesheet" href="../assets/style.css">
+  <!-- Metas -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="This web is used to get information about the score of user in the LOC server.">
+  <meta name="keywords" content="LOC, Discord, Jira, Library of Code">
+  <meta name="author" content="Library of Code sp-us | Department of Engineering">
+  <meta name="url" content="//report.libraryofcode.org/">
+  <meta name="image" content="//static.libraryofcode.org/library_of_code_comm_red.png">
+  <meta name="theme-color" content="#ee831b">
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- Main Div -->
+  <div class="container-fluid" id="page-container">
+    <!-- Body Div -->
+    <div id="content-wrap">
+
+      <!-- Verification Page Div -->
+      <div id="pre">
+        <div class="header" id="HASH">
+          <div>
+            <h2 class="headerH1">Library of Code sp-us</h2>
+            <p>
+              You are preparing to view your score report. You can only make a request every 30 minutes, make sure your
+              PIN is correct!
+              <br>
+              What is the Score? <a href="//confluence.libraryofcode.org/display/CI/Community+Score">Click Me</a>
+            </p>
+          </div>
+          <img src="//static.libraryofcode.org/library_of_code_comm_red.png" height="75px" width="75px">
+        </div>
+        <hr class="my-4">
+        <br><br>
+        <!-- Personal PIN -->
+        <div class="container-fluid" id="pre-two">
+          <h4>Personal PIN</h4>
+          <p>
+            You can get your PIN by running <strong>?score</strong> in your DMs with the Library of Code sp-us bot.
+            <br>
+            (First Time might take more seconds to load, do not refresh the page or it will count as logged in)
+          </p>
+          <div class="input-group mb-3">
+            <input id="pin1" type="text" class="form-control col-md-3" placeholder="XXX" aria-label="pin"
+              aria-describedby="basic-addon" maxlength="3">
+            <!-- - -->
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon">-</span>
+            </div>
+            <input id="pin2" type="text" class="form-control col-md-2" placeholder="XX" aria-label="pin"
+              aria-describedby="basic-addon2" maxlength="2">
+            <!-- - -->
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon2">-</span>
+            </div>
+            <input id="pin3" type="text" class="form-control col-md-3" placeholder="XXXX" aria-label="pin"
+              aria-describedby="basic-addon3" maxlength="4">
+            <!-- Submit Personal Pin -->
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit" onclick="js:submit()" id="enterB">Enter</button>
+            </div>
+          </div>
+        </div>
+        <br><br>
+        <!-- Staff PIN -->
+        <div class="container-fluid" id="pre-two">
+          <h4>Staff PIN</h4>
+          <p>If you're a Staff member and you are pulling a report for another user, please enter your PIN here.</p>
+          <div class="input-group mb-3">
+            <input id="staff-pin1" type="text" class="form-control col-md-3" placeholder="XXX" aria-label="pin"
+              aria-describedby="basic-addon" maxlength="3">
+            <!-- - -->
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">-</span>
+            </div>
+            <input id="staff-pin2" type="text" class="form-control col-md-2" placeholder="XX" aria-label="pin"
+              aria-describedby="basic-addon2" maxlength="2">
+            <!-- - -->
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon2">-</span>
+            </div>
+            <input id="staff-pin3" type="text" class="form-control col-md-3" placeholder="XXXX" aria-label="pin"
+              aria-describedby="basic-addon3" maxlength="4">
+            <!-- <button  class="btn btn-outline-secondary" type="submit" onclick="js:submit()" id="enterB">Enter</button> -->
+          </div>
+        </div>
+        <br><br>
+        <!-- Pre Approval Key -->
+        <div class="container-fluid" id="pre-two">
+          <h4>Pre-Approval Offer Accept <span class="badge badge-secondary"
+              style="background-color: blueviolet;">New</span></h4>
+          <p>If you've received a pre-approved offer in your DMs and you wish to accept, please enter it here and hit
+            enter. By entering your offer ID, you understand a hard pull will be performed on your Community Report.
+            While your chances of being approved for a pre-approved offer are higher, it's not 100%.</p>
+          <div class="input-group mb-3">
+            <input id="offer" type="text" class="form-control col-md-10" placeholder="Insert Offer Code"
+              aria-label="pin" aria-describedby="basic-addon3">
+            <!-- Submit Pre-Approval -->
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit" onclick="js:offer()" id="enterB">Enter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pre Approval Message -->
+      <div id="offer-accepted" style="display: none">
+        <h3 id="offer-accepted" style="display: none">Offer Accepted</h3>
+        <p id="offer-accepted" style="display: none">This offer has been accepted, you may now close this tab.</p>
+      </div>
+
+      <!-- Modal Denied -->
+      <div class="modal" tabindex="-1" role="dialog" style="display: none" id="denied">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">ERROR: Access Denied</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                onclick="js:invisible('denied') && visible('pre')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Your access to this service has been denied.<br>You can access every 30 minutes.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                onclick="js:invisible('denied') && visible('pre')" id="closeBtn">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PA Key Denied -->
+      <div class="modal" tabindex="-1" role="dialog" style="display: none" id="paKDenied">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">ERROR: Access Denied</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                onclick="js:invisible('paKDenied') && visible('pre')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>The Key you provided is invalid.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                onclick="js:invisible('paKDenied') && visible('pre')" id="closeBtn">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Invalid PIN -->
+      <div class="modal" tabindex="-1" role="dialog" style="display: none" id="invalidPIN">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">ERROR: Access Denied</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                onclick="js:invisible('invalidPIN') && visible('pre')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>The Personal Indentification Number (PIN) you provided is invalid.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                onclick="js:invisible('invalidPIN') && visible('pre')" id="closeBtn">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Invalid Key -->
+      <div class="modal" tabindex="-1" role="dialog" style="display: none" id="invalidKey">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">ERROR: Access Denied</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                onclick="js:invisible('invalidKey') && visible('pre')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>You must supply an Offer Code to continue.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                onclick="js:invisible('invalidKey') && visible('pre')" id="closeBtn">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 500 Service Modal -->
+      <div class="modal" tabindex="-1" role="dialog" style="display: none" id="serviceE">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">ERROR: Server Error</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                onclick="js:invisible('serviceE') && visible('pre')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>The service is currently experiencing issues processing, please try again later.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                onclick="js:invisible('serviceE') && visible('pre')" id="closeBtn">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Page Div-->
+      <div id="post" style="display: none">
+        <!-- Head -->
+        <div class="header" id="HASH">
+          <div>
+            <h2 class="headerH1">Library of Code sp-us | Community Report</h2>
+            <p>This information is confidential and only for authorized use.</p>
+          </div>
+          <img src="https://static.libraryofcode.org/library_of_code_comm_red.png" height="75px" width="75px">
+        </div>
+        <hr class="my-4">
+        <br>
+        <div id="profile-img"></div>
+        <br>
+        <div id="toggle-nav">
+          <a class="btn btn-info btn-sm" data-toggle="collapse" href="#Collapse0" role="button" aria-expanded="false"
+            aria-controls="Collapse0">
+            Toggle Personal Information
+          </a>
+          <a class="btn btn-info btn-sm" data-toggle="collapse" href="#Collapse01" role="button" aria-expanded="false"
+            aria-controls="Collapse01">
+            Toggle Score
+          </a>
+          <a class="btn btn-info btn-sm" data-toggle="collapse" href="#Collapse4" role="button" aria-expanded="false"
+            aria-controls="Collapse4">
+            Toggle History <span class="badge badge-light"><span id="histCount"></span></span>
+          </a>
+          <a class="btn btn-info btn-sm" data-toggle="collapse" href="#Collapse1" role="button" aria-expanded="false"
+            aria-controls="Collapse1">
+            Toggle Hard Inquiries <span class="badge badge-light"><span id="hardCount"></span></span>
+          </a>
+          <a class="btn btn-info btn-sm" data-toggle="collapse" href="#Collapse2" role="button" aria-expanded="false"
+            aria-controls="Collapse2">
+            Toggle Soft Inquiries <span class="badge badge-light"><span id="softCount"></span></span>
+          </a>
+        </div>
+        <br>
+        <!-- Personal Info Box -->
+        <div class="personal-box">
+          <div class="collapse multi-collapse" id="Collapse0">
+            <h4 id="card-box-h4">Personal Information</h4>
+            <div class="card card-body">
+              <p class="card-p" id="name"></p>
+              <p class="card-p" id="id"></p>
+              <p class="card-p" id="pin"></p>
+              <p class="card-p" id="locked"></p>
+              <p class="card-p" id="notify"></p>
+            </div>
+          </div>
+        </div>
+        <!-- Score Box -->
+        <div class="score-box">
+          <div class="collapse multi-collapse" id="Collapse01">
+            <p>
+              <h4 id="card-box-h4">Score</h4>
+              What is the Score? <a href="//confluence.libraryofcode.org/display/CI/Community+Score">Click Me</a>
+            </p>
+            <div class="card card-body">
+              <p class="card-p" id="lastUpdated"></p>
+              <p class="card-p" id="total"></p>
+              <p class="card-p" id="activity"></p>
+              <p class="card-p" id="roles"></p>
+              <p class="card-p" id="moderation"></p>
+              <p class="card-p" id="cs"></p>
+              <p class="card-p" id="other"></p>
+              <p class="card-p" id="misc"></p>
+            </div>
+          </div>
+        </div>
+        <!-- History Cards -->
+        <div class="hist-cards">
+          <div class="collapse multi-collapse" id="Collapse4">
+            <h4 id="card-box-h4">Score History</h4>
+            <div id="hist" style="height: 400px;overflow-y: scroll;">
+            </div>
+          </div>
+        </div>
+        <!-- Hard Pulls Table -->
+        <div class="hard-pull-table">
+          <div class="collapse multi-collapse" id="Collapse1">
+            <h4 id="card-box-h4">Hard Inquiries | <span id="hardCount"></span>
+            </h4>
+            <p>All your inquiries will be labeled here, regardless of their age. They will stop impacting your score
+              after 2 months.
+            </p>
+            <br>
+            <div class="col-auto">
+              <label class="sr-only" for="searchInput">Search ID</label>
+              <div class="input-group mb-2" style="justify-content: center;">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><span></span></div>
+                </div>
+                <input type="text" class="form-control col-md-6" id="searchInput" placeholder="Search ID" onkeyup="searchFunction()">
+              </div>
+            </div>
+            <br>
+            <div class="row" style="height: 400px;overflow-y: scroll;">
+              <div class="col">
+                <div class="card card-body">
+                  <table class="table table-bordered table-striped" id="hard">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col" style="position: sticky;top: 0;"><strong>ID</strong></th>
+                        <th scope="col" style="position: sticky;top: 0;"><strong>Department/Service</strong></th>
+                        <th scope="col" style="position: sticky;top: 0;"><strong>Reason</strong></th>
+                        <th scope="col" style="position: sticky;top: 0;"><strong>Date</strong></th>
+                        <th scope="col" style="position: sticky;top: 0;"><strong>Expiration</strong></th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Soft Pulls Table -->
+        <div class="soft-pull-table">
+          <div class="collapse multi-collapse" id="Collapse2">
+            <h4 id="card-box-h4">Soft Inquiries | <span id="softCount"></span>
+            </h4>
+            <p>Soft Inquiries are pulls initiated by Staff members or even yourself to re-evaluate existing eligibility
+              or just to check the report for informational purposes. Soft Inquiries will not count in your Community
+              Score.
+            </p>
+            <div class="col-auto">
+              <label class="sr-only" for="searchInputTwo">Search Department/Service or Name</label>
+              <br>
+              <div class="input-group mb-2" style="justify-content: center;">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><span></span></div>
+                </div>
+                <input type="text" class="form-control col-md-6" id="searchInputTwo" placeholder="Search Department/Service or Name" onkeyup="searchFunctionTwo()">
+              </div>
+              <br>
+            </div>
+            <div class="row" style="height: 400px;overflow-y: scroll;">
+              <div class="col">
+                <div class="card card-body">
+                  <table class="table table-bordered table-striped" id="soft">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col" style="position: sticky;top: 0;"><strong>Department/Service or Name</strong></th>
+                        <th scope="col" style="position: sticky;top: 0;"><strong>Date</strong></th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <br><br>
+    <footer class="text-center font-weight-light text-monospace" id="footer">
+      <input type="radio" name="radioStyle" value="clair" id="rad1" checked>
+        <label for="rad1" style="cursor: pointer;" id="radStyle">clair</label>
+      </input>
+       | 
+      <input type="radio" name="radioStyle" value="dark" id="rad2">
+        <label for="rad2" style="cursor: pointer;" id="radStyle">dark</label>
+      </input>
+      <br><br>
+      LIBRARY OF CODE SP-US | DEPT. OF COMMUNITY ENGAGEMENT & ENGINEERING | BUREAU OF COMMUNITY REPORTS<br>
+      Licensed under GNU AGPLv3 : <a
+        href="https://gitlab.libraryofcode.org/engineering/commreport-frontend">Repository</a>
+      <br>
+      <a href="https://loc.sh/discord">Discord Server</a> | <a href="//libraryofcode.org">Main Web</a> | <a
+        href="https://loc.sh/support">Support</a> | <a href="///directory.libraryofcode.org">Staff Directory</a>
+
+      <br>
+      FOR AUTHORIZED USE ONLY
+      <br>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
+  <script src="../assets/script.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('[data-toggle="toggle"]').change(function () {
+        $(this).parents().next('.hide').toggle();
+      });
+    });
+  </script>
+</body>
